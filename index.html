@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ernesto Duct Care</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function Header() {
+      return (
+        <header className="header">
+          <div className="header-left">
+            <img src="https://via.placeholder.com/50" alt="Ernesto Duct Care Logo" className="logo" />
+            <h1>Ernesto Duct Care</h1>
+          </div>
+          <nav>
+            <ul className="nav-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#contact">Contact Now</a></li>
+            </ul>
+          </nav>
+        </header>
+      );
+    }
+
+    function Home() {
+      return (
+        <section id="home" className="home">
+          <h2>Ernesto Duct Care</h2>
+          <p>"A clean home is a happy home – let us make yours shine!"</p>
+        </section>
+      );
+    }
+
+    function About() {
+      return (
+        <section id="about" className="about">
+          <div className="about-content">
+            <h2>About Our Company</h2>
+            <p>
+              Ernesto Duct Care provides expert home cleaning and duct maintenance services. Our team delivers spotless results and improves air quality using eco-friendly products. Trust us for reliable, affordable, and high-quality cleaning tailored to your needs!
+            </p>
+          </div>
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Clean home" className="about-image" />
+        </section>
+      );
+    }
+
+    function Services() {
+      const services = [
+        {
+          title: "Deep House Cleaning",
+          description: "Comprehensive cleaning of all living spaces, including dusting, vacuuming, and sanitizing surfaces for a spotless home.",
+          image: "https://images.unsplash.com/photo-1581578735769-4d63b6c48545"
+        },
+        {
+          title: "Air Duct Cleaning",
+          description: "Professional removal of dust, debris, and allergens from HVAC systems to improve indoor air quality and system efficiency.",
+          image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+        },
+        {
+          title: "Carpet Cleaning",
+          description: "Thorough steam cleaning and stain removal to refresh and restore carpets, leaving them clean and vibrant.",
+          image: "https://images.unsplash.com/photo-1594041680534-e8c8cde90d70"
+        },
+        {
+          title: "Upholstery Cleaning",
+          description: "Gentle yet effective cleaning of furniture fabrics to eliminate dirt, stains, and odors, extending their lifespan.",
+          image: "https://images.unsplash.com/photo-1513696789427-8a0f0b412ff7"
+        },
+        {
+          title: "Kitchen Deep Cleaning",
+          description: "Specialized cleaning of appliances, countertops, and cabinets to ensure a hygienic and sparkling kitchen environment.",
+          image: "https://images.unsplash.com/photo-1556911220-b01087794527"
+        },
+        {
+          title: "Bathroom Sanitization",
+          description: "Detailed cleaning and disinfection of tiles, fixtures, and surfaces for a fresh, germ-free bathroom.",
+          image: "https://images.unsplash.com/photo-1584622650111-993a426fbf5a"
+        },
+        {
+          title: "Move-In/Move-Out Cleaning",
+          description: "Complete cleaning services for homes before moving in or out, ensuring a pristine space for the next occupants.",
+          image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+        }
+     ល
+
+      return (
+        <section id="services" className="services">
+          <h2>Our Services</h2>
+          <div className="services-grid">
+            {services.map((service, index) => (
+              <div key={index} className="service-card">
+                <img src={service.image} alt={service.title} className="service-image" />
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    function Reviews() {
+      const reviews = [
+        {
+          text: "Outstanding service from Ernesto Duct Care! They efficiently cleaned and sanitized all our vents, removing all dust and dirt. Their attention to detail was impressive. I definitely recommend them to anyone needing duct cleaning.",
+          name: "Sarah Johnson",
+        },
+        {
+          text: "Ernesto Duct Care transformed our home! Their deep cleaning service left every room sparkling, and the team was professional and thorough. Highly recommend their eco-friendly approach!",
+          name: "Michael Lee",
+        },
+        {
+          text: "Fantastic job on our carpet and upholstery cleaning! Ernesto Duct Care made our furniture look brand new, and their staff was friendly and reliable. Five stars all the way!",
+          name: "Emily Davis",
+        }
+      ];
+
+      return (
+        <section id="reviews" className="reviews">
+          <h2>Client Reviews</h2>
+          <div className="reviews-grid">
+            {reviews.map((review, index) => (
+              <div key={index} className="review-card">
+                <div className="stars">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="star" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.97a1 1 0 00.95.69h4.15c.969 0 1.371 1.24.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.287 3.97c.3.921-.755 1.688-1.54 1.118l-3.357-2.44a1 1 0 00-1.175 0l-3.357 2.44c-.784.57-1.84-.197-1.54-1.118l1.287-3.97a1 1 0 00-.364-1.118L2.27 9.397c-.784-.57-.38-1.81.588-1.81h4.15a1 1 0 00.95-.69l1.286-3.97z"/>
+                    </svg>
+                  ))}
+                </div>
+                <p>{review.text}</p>
+                <p className="review-name">{review.name}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    function Contact() {
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        alert("Booking submitted! We'll contact you soon.");
+      };
+
+      return (
+        <section id="contact" className="contact">
+          <h2>Book Now</h2>
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <input type="text" placeholder="Name and Surname" required />
+            <input type="email" placeholder="Email" required />
+            <input type="tel" placeholder="Phone Number" required />
+            <textarea placeholder="Job Description" rows="4" required></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </section>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <Header />
+          <Home />
+          <About />
+          <Services />
+          <Reviews />
+          <Contact />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
