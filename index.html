@@ -1,187 +1,584 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ernesto Duct Care</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.9/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ernesto Duct Care - Professional Home Cleaning Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo::before {
+            content: "🏠";
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f8ff" width="1200" height="600"/><circle fill="%23e6f3ff" cx="200" cy="150" r="80"/><circle fill="%23ddeeff" cx="800" cy="300" r="120"/><circle fill="%23e6f3ff" cx="1000" cy="100" r="60"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .reviews h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    function Header() {
-      return (
-        <header className="header">
-          <div className="header-left">
-            <img src="https://via.placeholder.com/50" alt="Ernesto Duct Care Logo" className="logo" />
-            <h1>Ernesto Duct Care</h1>
-          </div>
-          <nav>
-            <ul className="nav-links">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#contact">Contact Now</a></li>
-            </ul>
-          </nav>
-        </header>
-      );
-    }
-
-    function Home() {
-      return (
-        <section id="home" className="home">
-          <h2>Ernesto Duct Care</h2>
-          <p>"A clean home is a happy home – let us make yours shine!"</p>
-        </section>
-      );
-    }
-
-    function About() {
-      return (
-        <section id="about" className="about">
-          <div className="about-content">
-            <h2>About Our Company</h2>
-            <p>
-              Ernesto Duct Care provides expert home cleaning and duct maintenance services. Our team delivers spotless results and improves air quality using eco-friendly products. Trust us for reliable, affordable, and high-quality cleaning tailored to your needs!
-            </p>
-          </div>
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Clean home" className="about-image" />
-        </section>
-      );
-    }
-
-    function Services() {
-      const services = [
-        {
-          title: "Deep House Cleaning",
-          description: "Comprehensive cleaning of all living spaces, including dusting, vacuuming, and sanitizing surfaces for a spotless home.",
-          image: "https://images.unsplash.com/photo-1581578735769-4d63b6c48545"
-        },
-        {
-          title: "Air Duct Cleaning",
-          description: "Professional removal of dust, debris, and allergens from HVAC systems to improve indoor air quality and system efficiency.",
-          image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-        },
-        {
-          title: "Carpet Cleaning",
-          description: "Thorough steam cleaning and stain removal to refresh and restore carpets, leaving them clean and vibrant.",
-          image: "https://images.unsplash.com/photo-1594041680534-e8c8cde90d70"
-        },
-        {
-          title: "Upholstery Cleaning",
-          description: "Gentle yet effective cleaning of furniture fabrics to eliminate dirt, stains, and odors, extending their lifespan.",
-          image: "https://images.unsplash.com/photo-1513696789427-8a0f0b412ff7"
-        },
-        {
-          title: "Kitchen Deep Cleaning",
-          description: "Specialized cleaning of appliances, countertops, and cabinets to ensure a hygienic and sparkling kitchen environment.",
-          image: "https://images.unsplash.com/photo-1556911220-b01087794527"
-        },
-        {
-          title: "Bathroom Sanitization",
-          description: "Detailed cleaning and disinfection of tiles, fixtures, and surfaces for a fresh, germ-free bathroom.",
-          image: "https://images.unsplash.com/photo-1584622650111-993a426fbf5a"
-        },
-        {
-          title: "Move-In/Move-Out Cleaning",
-          description: "Complete cleaning services for homes before moving in or out, ensuring a pristine space for the next occupants.",
-          image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-        }
-     ល
-
-      return (
-        <section id="services" className="services">
-          <h2>Our Services</h2>
-          <div className="services-grid">
-            {services.map((service, index) => (
-              <div key={index} className="service-card">
-                <img src={service.image} alt={service.title} className="service-image" />
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      );
-    }
-
-    function Reviews() {
-      const reviews = [
-        {
-          text: "Outstanding service from Ernesto Duct Care! They efficiently cleaned and sanitized all our vents, removing all dust and dirt. Their attention to detail was impressive. I definitely recommend them to anyone needing duct cleaning.",
-          name: "Sarah Johnson",
-        },
-        {
-          text: "Ernesto Duct Care transformed our home! Their deep cleaning service left every room sparkling, and the team was professional and thorough. Highly recommend their eco-friendly approach!",
-          name: "Michael Lee",
-        },
-        {
-          text: "Fantastic job on our carpet and upholstery cleaning! Ernesto Duct Care made our furniture look brand new, and their staff was friendly and reliable. Five stars all the way!",
-          name: "Emily Davis",
-        }
-      ];
-
-      return (
-        <section id="reviews" className="reviews">
-          <h2>Client Reviews</h2>
-          <div className="reviews-grid">
-            {reviews.map((review, index) => (
-              <div key={index} className="review-card">
-                <div className="stars">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="star" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.97a1 1 0 00.95.69h4.15c.969 0 1.371 1.24.588 1.81l-3.357 2.44a1 1 0 00-.364 1.118l1.287 3.97c.3.921-.755 1.688-1.54 1.118l-3.357-2.44a1 1 0 00-1.175 0l-3.357 2.44c-.784.57-1.84-.197-1.54-1.118l1.287-3.97a1 1 0 00-.364-1.118L2.27 9.397c-.784-.57-.38-1.81.588-1.81h4.15a1 1 0 00.95-.69l1.286-3.97z"/>
-                    </svg>
-                  ))}
-                </div>
-                <p>{review.text}</p>
-                <p className="review-name">{review.name}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      );
-    }
-
-    function Contact() {
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        alert("Booking submitted! We'll contact you soon.");
-      };
-
-      return (
-        <section id="contact" className="contact">
-          <h2>Book Now</h2>
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <input type="text" placeholder="Name and Surname" required />
-            <input type="email" placeholder="Email" required />
-            <input type="tel" placeholder="Phone Number" required />
-            <textarea placeholder="Job Description" rows="4" required></textarea>
-            <button type="submit">Send</button>
-          </form>
-        </section>
-      );
-    }
-
-    function App() {
-      return (
-        <div>
-          <Header />
-          <Home />
-          <About />
-          <Services />
-          <Reviews />
-          <Contact />
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Ernesto Duct Care</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact Now</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-      );
-    }
+    </header>
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ernesto Duct Care</h1>
+                <p class="hero-quote">"A clean home is a happy home - let us make yours sparkle!"</p>
+                <a href="#contact" class="cta-button">Get Your Free Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Our Company</h2>
+                    <p>Ernesto Duct Care provides expert home cleaning and duct maintenance services. Our team delivers spotless results and improves air quality using eco-friendly products. Trust us for reliable, affordable, and high-quality cleaning tailored to your needs!</p>
+                </div>
+                <div class="about-image">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%23f0f8ff' width='400' height='300'/><rect fill='%23667eea' x='50' y='50' width='300' height='200' rx='20'/><rect fill='%23ffffff' x='70' y='70' width='80' height='60' rx='5'/><rect fill='%23ffffff' x='170' y='70' width='80' height='60' rx='5'/><rect fill='%23ffffff' x='270' y='70' width='60' height='60' rx='5'/><rect fill='%23ffffff' x='70' y='150' width='260' height='80' rx='5'/><text x='200' y='280' text-anchor='middle' fill='%23333' font-family='Arial' font-size='14'>Professional Cleaning Services</text></svg>" alt="Professional Cleaning Services">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Deep House Cleaning</h3>
+                    <p>Comprehensive cleaning of all living spaces, including dusting, vacuuming, and sanitizing surfaces for a spotless home.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌬️</div>
+                    <h3>Air Duct Cleaning</h3>
+                    <p>Professional removal of dust, debris, and allergens from HVAC systems to improve indoor air quality and system efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧽</div>
+                    <h3>Carpet Cleaning</h3>
+                    <p>Thorough steam cleaning and stain removal to refresh and restore carpets, leaving them clean and vibrant.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛋️</div>
+                    <h3>Upholstery Cleaning</h3>
+                    <p>Gentle yet effective cleaning of furniture fabrics to eliminate dirt, stains, and odors, extending their lifespan.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🍳</div>
+                    <h3>Kitchen Deep Cleaning</h3>
+                    <p>Specialized cleaning of appliances, countertops, and cabinets to ensure a hygienic and sparkling kitchen environment.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚿</div>
+                    <h3>Bathroom Sanitization</h3>
+                    <p>Detailed cleaning and disinfection of tiles, fixtures, and surfaces for a fresh, germ-free bathroom.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Move-In/Move-Out Cleaning</h3>
+                    <p>Complete cleaning services for homes before moving in or out, ensuring a pristine space for the next occupants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">Outstanding service from Ernesto Duct Care! They efficiently cleaned and sanitized all our vents, removing all dust and dirt. Their attention to detail was impressive. I definitely recommend them to anyone needing duct cleaning.</p>
+                    <p class="reviewer-name">- Maria Rodriguez</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">Absolutely fantastic cleaning service! My house has never looked better. The team was professional, punctual, and used eco-friendly products. Will definitely be using their services again!</p>
+                    <p class="reviewer-name">- James Thompson</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">Ernesto Duct Care exceeded all my expectations. They transformed my carpets and upholstery, making them look brand new. Highly professional and reasonably priced. Five stars!</p>
+                    <p class="reviewer-name">- Sarah Johnson</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Book Now</h2>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Job Description *</label>
+                    <textarea id="description" name="description" placeholder="Please describe the cleaning services you need..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ernesto Duct Care. All rights reserved. Professional cleaning services you can trust.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.phone || !data.description) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('Thank you for your request! We will contact you within 24 hours to schedule your cleaning service.');
+            this.reset();
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards and review cards
+        document.querySelectorAll('.service-card, .review-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
