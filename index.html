@@ -77,14 +77,13 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f8ff" width="1200" height="600"/><circle fill="%23e6f3ff" cx="200" cy="150" r="80"/><circle fill="%23ddeeff" cx="800" cy="300" r="120"/><circle fill="%23e6f3ff" cx="1000" cy="100" r="60"/></svg>');
+            background: #f5f5dc; /* Beige background */
             background-size: cover;
             background-position: center;
             height: 100vh;
             display: flex;
             align-items: center;
             text-align: center;
-            color: white;
             margin-top: 80px;
         }
 
@@ -92,6 +91,7 @@
             font-size: 3.5rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
+            color: #2c5530; /* Changed to dark green */
         }
 
         .hero-quote {
@@ -100,6 +100,7 @@
             margin-bottom: 2rem;
             opacity: 0.9;
             animation: fadeInUp 1s ease 0.3s both;
+            color: #2c5530; /* Changed to dark green */
         }
 
         .cta-button {
@@ -203,6 +204,96 @@
         .service-card p {
             color: #666;
             line-height: 1.6;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .billing-form {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .billing-form.active {
+            display: block;
         }
 
         /* Reviews Section */
@@ -360,7 +451,7 @@
                 text-align: center;
             }
 
-            .services-grid {
+            .services-grid, .products-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -377,6 +468,7 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#products">Products</a></li>
                         <li><a href="#contact">Contact Now</a></li>
                     </ul>
                 </nav>
@@ -454,131 +546,387 @@
         </div>
     </section>
 
-    <!-- Reviews Section -->
-    <section class="reviews">
+    <!-- Products Section -->
+    <section id="products" class="products">
         <div class="container">
-            <h2>What Our Clients Say</h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="review-text">Outstanding service from Ernesto Duct Care! They efficiently cleaned and sanitized all our vents, removing all dust and dirt. Their attention to detail was impressive. I definitely recommend them to anyone needing duct cleaning.</p>
-                    <p class="reviewer-name">- Maria Rodriguez</p>
+            <h2>Shop Eco-Friendly Cleaning Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/gh-062222-best-all-purpose-cleaners-1655921002.png?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*" alt="All-Purpose Cleaner" class="product-image">
+                    <h3>All-Purpose Cleaner</h3>
+                    <p>Eco-friendly, biodegradable cleaner for surfaces, countertops, and appliances.</p>
+                    <div class="product-price">$12.99</div>
+                    <a href="#" class="add-to-cart" data-product="All-Purpose Cleaner" data-price="12.99">Add to Cart</a>
+                    <form class="billing-form" id="billing-form-1">
+                        <div class="form-group">
+                            <label for="billing-name-1">Full Name *</label>
+                            <input type="text" id="billing-name-1" name="billing-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-email-1">Email Address *</label>
+                            <input type="email" id="billing-email-1" name="billing-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-address-1">Billing Address *</label>
+                            <input type="text" id="billing-address-1" name="billing-address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number-1">Card Number *</label>
+                            <input type="text" id="card-number-1" name="card-number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry-1">Expiry Date (MM/YY) *</label>
+                            <input type="text" id="card-expiry-1" name="card-expiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc-1">CVC *</label>
+                            <input type="text" id="card-cvc-1" name="card-cvc" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Complete Purchase</button>
+                    </form>
                 </div>
-                <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="review-text">Absolutely fantastic cleaning service! My house has never looked better. The team was professional, punctual, and used eco-friendly products. Will definitely be using their services again!</p>
-                    <p class="reviewer-name">- James Thompson</p>
+                <div class="product-card">
+                    <img src="https://missouripoisoncenter.org/wp-content/uploads/2021/07/windex.jpg" alt="Glass Cleaner" class="product-image">
+                    <h3>Glass Cleaner</h3>
+                    <p>Streak-free, plant-based formula for windows, mirrors, and glass surfaces.</p>
+                    <div class="product-price">$9.99</div>
+                    <a href="#" class="add-to-cart" data-product="Glass Cleaner" data-price="9.99">Add to Cart</a>
+                    <form class="billing-form" id="billing-form-2">
+                        <div class="form-group">
+                            <label for="billing-name-2">Full Name *</label>
+                            <input type="text" id="billing-name-2" name="billing-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-email-2">Email Address *</label>
+                            <input type="email" id="billing-email-2" name="billing-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-address-2">Billing Address *</label>
+                            <input type="text" id="billing-address-2" name="billing-address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number-2">Card Number *</label>
+                            <input type="text" id="card-number-2" name="card-number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry-2">Expiry Date (MM/YY) *</label>
+                            <input type="text" id="card-expiry-2" name="card-expiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc-2">CVC *</label>
+                            <input type="text" id="card-cvc-2" name="card-cvc" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Complete Purchase</button>
+                    </form>
                 </div>
-                <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="review-text">Ernesto Duct Care exceeded all my expectations. They transformed my carpets and upholstery, making them look brand new. Highly professional and reasonably priced. Five stars!</p>
-                    <p class="reviewer-name">- Sarah Johnson</p>
+                <div class="product-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV77QfPSlX7lL-5WVYpg2MU7pAszr4lUhnAA&s" alt="Floor Cleaner" class="product-image">
+                    <h3>Floor Cleaner</h3>
+                    <p>Non-toxic cleaner for hardwood, tile, and laminate floors, safe for pets.</p>
+                    <div class="product-price">$14.99</div>
+                    <a href="#" class="add-to-cart" data-product="Floor Cleaner" data-price="14.99">Add to Cart</a>
+                    <form class="billing-form" id="billing-form-3">
+                        <div class="form-group">
+                            <label for="billing-name-3">Full Name *</label>
+                            <input type="text" id="billing-name-3" name="billing-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-email-3">Email Address *</label>
+                            <input type="email" id="billing-email-3" name="billing-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-address-3">Billing Address *</label>
+                            <input type="text" id="billing-address-3" name="billing-address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number-3">Card Number *</label>
+                            <input type="text" id="card-number-3" name="card-number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry-3">Expiry Date (MM/YY) *</label>
+                            <input type="text" id="card-expiry-3" name="card-expiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc-3">CVC *</label>
+                            <input type="text" id="card-cvc-3" name="card-cvc" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Complete Purchase</button>
+                    </form>
+                </div>
+                <div class="product-card">
+                    <img src="https://assets.sainsburys-groceries.co.uk/gol/8164454/1/640x640.jpg" alt="Bathroom Cleaner" class="product-image">
+                    <h3>Bathroom Cleaner</h3>
+                    <p>Powerful, eco-safe cleaner for tiles, fixtures, and shower surfaces.</p>
+                    <div class="product-price">$11.99</div>
+                    <a href="#" class="add-to-cart" data-product="Bathroom Cleaner" data-price="11.99">Add to Cart</a>
+                    <form class="billing-form" id="billing-form-4">
+                        <div class="form-group">
+                            <label for="billing-name-4">Full Name *</label>
+                            <input type="text" id="billing-name-4" name="billing-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-email-4">Email Address *</label>
+                            <input type="email" id="billing-email-4" name="billing-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-address-4">Billing Address *</label>
+                            <input type="text" id="billing-address-4" name="billing-address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number-4">Card Number *</label>
+                            <input type="text" id="card-number-4" name="card-number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry-4">Expiry Date (MM/YY) *</label>
+                            <input type="text" id="card-expiry-4" name="card-expiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc-4">CVC *</label>
+                            <input type="text" id="card-cvc-4" name="card-cvc" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Complete Purchase</button>
+                    </form>
+                </div>
+                <div class="product-card">
+                    <img src="https://cdn.thewirecutter.com/wp-content/media/2023/02/dishsoap-2048px-image08.jpg" alt="Dish Soap" class="product-image">
+                    <h3>Dish Soap</h3>
+                    <p>Gentle, plant-based soap that cuts grease while being kind to hands.</p>
+                    <div class="product-price">$8.99</div>
+                    <a href="#" class="add-to-cart" data-product="Dish Soap" data-price="8.99">Add to Cart</a>
+                    <form class="billing-form" id="billing-form-5">
+                        <div class="form-group">
+                            <label for="billing-name-5">Full Name *</label>
+                            <input type="text" id="billing-name-5" name="billing-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-email-5">Email Address *</label>
+                            <input type="email" id="billing-email-5" name="billing-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-address-5">Billing Address *</label>
+                            <input type="text" id="billing-address-5" name="billing-address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number-5">Card Number *</label>
+                            <input type="text" id="card-number-5" name="card-number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry-5">Expiry Date (MM/YY) *</label>
+                            <input type="text" id="card-expiry-5" name="card-expiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc-5">CVC *</label>
+                            <input type="text" id="card-cvc-5" name="card-cvc" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Complete Purchase</button>
+                    </form>
+                </div>
+                <div class="product-card">
+                    <img src="https://cdn.thewirecutter.com/wp-content/media/2024/01/laundry-detergent-2048px-5533-3x2-1.jpg?auto=webp&quality=75&crop=1:1,smart&width=1024" alt="Laundry Detergent" class="product-image">
+                    <h3>Laundry Detergent</h3>
+                    <p>Concentrated, eco-friendly detergent for clean, fresh laundry.</p>
+                    <div class="product-price">$15.99</div>
+                    <a href="#" class="add-to-cart" data-product="Laundry Detergent" data-price="15.99">Add to Cart</a>
+                    <form class="billing-form" id="billing-form-6">
+                        <div class="form-group">
+                            <label for="billing-name-6">Full Name *</label>
+                            <input type="text" id="billing-name-6" name="billing-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-email-6">Email Address *</label>
+                            <input type="email" id="billing-email-6" name="billing-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billing-address-6">Billing Address *</label>
+                            <input type="text" id="billing-address-6" name="billing-address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number-6">Card Number *</label>
+                            <input type="text" id="card-number-6" name="card-number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry-6">Expiry Date (MM/YY) *</label>
+                            <input type="text" id="card-expiry-6" name="card-expiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc-6">CVC *</label>
+                            <input type="text" id="card-cvc-6" name="card-cvc" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Complete Purchase</button>
+                    </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Book Now</h2>
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required>
+        <!-- Reviews Section -->
+        <section class="reviews">
+            <div class="container">
+                <h2>What Our Clients Say</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">Outstanding service from Ernesto Duct Care! They efficiently cleaned and sanitized all our vents, removing all dust and dirt. Their attention to detail was impressive. I definitely recommend them to anyone needing duct cleaning.</p>
+                        <p class="reviewer-name">- Maria Rodriguez</p>
+                    </div>
+                    <div class="review-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">Absolutely fantastic cleaning service! My house has never looked better. The team was professional, punctual, and used eco-friendly products. Will definitely be using their services again!</p>
+                        <p class="reviewer-name">- James Thompson</p>
+                    </div>
+                    <div class="review-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="review-text">Ernesto Duct Care exceeded all my expectations. They transformed my carpets and upholstery, making them look brand new. Highly professional and reasonably priced. Five stars!</p>
+                        <p class="reviewer-name">- Sarah Johnson</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="description">Job Description *</label>
-                    <textarea id="description" name="description" placeholder="Please describe the cleaning services you need..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Request</button>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Ernesto Duct Care. All rights reserved. Professional cleaning services you can trust.</p>
-        </div>
-    </footer>
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Book Now</h2>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Job Description *</label>
+                        <textarea id="description" name="description" placeholder="Please describe the cleaning services you need..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Request</button>
+                </form>
+            </div>
+        </section>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p>© 2025 Ernesto Duct Care. All rights reserved. Professional cleaning services you can trust.</p>
+            </div>
+        </footer>
+
+        <script>
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Form submission handler
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Simple validation
+                if (!data.name || !data.email || !data.phone || !data.description) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Simulate form submission
+                alert('Thank you for your request! We will contact you within 24 hours to schedule your cleaning service.');
+                this.reset();
+            });
+
+            // Add to cart functionality
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productCard = this.closest('.product-card');
+                    const billingForm = productCard.querySelector('.billing-form');
+                    
+                    // Hide all other billing forms
+                    document.querySelectorAll('.billing-form').forEach(form => {
+                        form.classList.remove('active');
                     });
+                    
+                    // Toggle current billing form
+                    billingForm.classList.toggle('active');
+                    
+                    // Scroll to billing form
+                    if (billingForm.classList.contains('active')) {
+                        billingForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Billing form submission handler
+            document.querySelectorAll('.billing-form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    const product = this.closest('.product-card').querySelector('.add-to-cart').getAttribute('data-product');
+                    
+                    // Simple validation
+                    if (!data['billing-name'] || !data['billing-email'] || !data['billing-address'] || 
+                        !data['card-number'] || !data['card-expiry'] || !data['card-cvc']) {
+                        alert('Please fill in all required billing fields.');
+                        return;
+                    }
+                    
+                    // Simulate payment processing
+                    alert(`Thank you for purchasing ${product}! Your payment has been processed.`);
+                    this.reset();
+                    this.classList.remove('active');
+                });
+            });
+
+            // Add scroll effect to header
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(102, 126, 234, 0.95)';
+                    header.style.backdropFilter = 'blur(10px)';
+                } else {
+                    header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    header.style.backdropFilter = 'none';
                 }
             });
-        });
 
-        // Form submission handler
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Simple validation
-            if (!data.name || !data.email || !data.phone || !data.description) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Simulate form submission
-            alert('Thank you for your request! We will contact you within 24 hours to schedule your cleaning service.');
-            this.reset();
-        });
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(102, 126, 234, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                header.style.backdropFilter = 'none';
-            }
-        });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
 
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+            // Observe service cards, product cards, and review cards
+            document.querySelectorAll('.service-card, .product-card, .review-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
             });
-        }, observerOptions);
-
-        // Observe service cards and review cards
-        document.querySelectorAll('.service-card, .review-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
+        </script>
 </body>
 </html>
